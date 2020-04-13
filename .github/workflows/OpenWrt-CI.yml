@@ -45,12 +45,15 @@ jobs:
 
       - name: Update feeds
         run: |
+          pwd
           rm -rf openwrt/
           git clone https://github.com/dongjuanyong/openwrt
           cd openwrt
+          pwd
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           cd ..
+          pwd
           ./fixup.sh
 
       - name: Generate configuration file
