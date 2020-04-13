@@ -1,0 +1,69 @@
+diff --git a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+index fe9ef75c5..a40e32913 100644
+--- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
++++ b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+@@ -43,6 +43,7 @@ return L.view.extend({
+ 
+ 		o = s.option(form.Flag, 'syn_flood', _('Enable SYN-flood protection'));
+ 		o = s.option(form.Flag, 'drop_invalid', _('Drop invalid packets'));
++		o = s.option(form.Flag, 'fullcone', _('Full Cone NAT'));
+ 
+ 		var p = [
+ 			s.option(form.ListValue, 'input', _('Input')),
+diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans/base.po
+index 06e546bb4..978e71b0f 100644
+--- a/modules/luci-base/po/zh_Hans/base.po
++++ b/modules/luci-base/po/zh_Hans/base.po
+@@ -425,10 +425,22 @@ msgstr "添加对等点"
+ msgid "Additional Hosts files"
+ msgstr "额外的 HOSTS 文件"
+ 
++msgid "Disable IPv6 DNS forwards"
++msgstr "禁止解释 IPv6 DNS 记录"
++
++msgid "Filter IPv6(AAAA) DNS Query Name Resolve"
++msgstr "过滤掉 IPv6(AAAA) ，只返回 IPv4 DNS 域名记录"
++
++msgid "Minimum TTL to send to clients"
++msgstr "客户端缓存的最小 DNS TTL"
++
+ #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:243
+ msgid "Additional servers file"
+ msgstr "额外的 SERVERS 文件"
+ 
++msgid "Modify DNS entries minimum TTL (max is 86400, 0 is no modify)"
++msgstr "修改发送到客户端的域名记录的 TTL 时间 (最大 86400, 0 表示不修改)"
++
+ #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:34
+ #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:35
+ #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:36
+diff --git a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
+index 4e217a541..0c08e2f31 100644
+--- a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
++++ b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
+@@ -187,6 +187,11 @@ return L.view.extend({
+ 		s.taboption('files', form.DynamicList, 'addnhosts',
+ 			_('Additional Hosts files')).optional = true;
+ 
++		o = s.taboption('advanced', form.Flag, 'filter_aaaa',
++			_('Disable IPv6 DNS forwards'),
++			_('Filter IPv6(AAAA) DNS Query Name Resolve'));
++		o.optional = true;
++
+ 		o = s.taboption('advanced', form.Flag, 'quietdhcp',
+ 			_('Suppress logging'),
+ 			_('Suppress logging of the routine operation of these protocols'));
+@@ -345,6 +345,13 @@ return L.view.extend({
+ 		o.datatype = 'range(0,10000)';
+ 		o.placeholder = 150;
+ 
++		o = s.taboption('advanced', form.Value, 'mini_ttl',
++			_('Minimum TTL to send to clients'),
++			_('Modify DNS entries minimum TTL (max is 86400, 0 is no modify)'));
++		o.optional = true;
++		o.datatype = 'range(0,86400)';
++		o.placeholder = 0;
++
+ 		s.taboption('tftp', form.Flag, 'enable_tftp',
+ 			_('Enable TFTP server')).optional = true;
+ 
