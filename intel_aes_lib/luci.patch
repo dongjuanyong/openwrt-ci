@@ -27,7 +27,7 @@ index 06e546bb4..978e71b0f 100644
 +msgid "Minimum TTL to send to clients"
 +msgstr "客户端缓存的最小 DNS TTL"
 +
- #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:243
+ #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:255
  msgid "Additional servers file"
  msgstr "额外的 SERVERS 文件"
  
@@ -41,7 +41,7 @@ diff --git a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/
 index 4e217a541..0c08e2f31 100644
 --- a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-@@ -187,6 +187,11 @@ return L.view.extend({
+@@ -199,6 +199,11 @@ return L.view.extend({
  		s.taboption('files', form.DynamicList, 'addnhosts',
  			_('Additional Hosts files')).optional = true;
  
@@ -53,7 +53,7 @@ index 4e217a541..0c08e2f31 100644
  		o = s.taboption('advanced', form.Flag, 'quietdhcp',
  			_('Suppress logging'),
  			_('Suppress logging of the routine operation of these protocols'));
-@@ -345,6 +345,13 @@ return L.view.extend({
+@@ -357,6 +362,13 @@ return L.view.extend({
  		o.datatype = 'range(0,10000)';
  		o.placeholder = 150;
  
