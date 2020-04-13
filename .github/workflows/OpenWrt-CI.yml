@@ -11,7 +11,7 @@ name: OpenWrt-CI
 
 on:
   schedule:
-    - cron: 0 20 * * 0
+    - cron: 0 20 * * *
   push:
     tags:
       - '*'
@@ -45,16 +45,14 @@ jobs:
 
       - name: Update feeds
         run: |
-          rm -rf openwrt/
           git clone https://github.com/dongjuanyong/openwrt
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          cd ..
-          ./fix.sh
 
       - name: Generate configuration file
         run: |
+          ./fix.sh
           cd openwrt
           make defconfig
 
