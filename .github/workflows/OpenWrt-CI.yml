@@ -76,7 +76,10 @@ jobs:
           du -h --max-depth=1 ./bin
 
       - name: Prepare artifact
-        run: find ./openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
+        run: |
+          find ./openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
+          find ./openwrt/bin/targets/ -type d -name "rootfs" | xargs rm -rf {}
+          find ./openwrt/bin/targets/ -type d -name "kernel" | xargs rm -rf {}
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
