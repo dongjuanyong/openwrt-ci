@@ -78,8 +78,7 @@ jobs:
       - name: Prepare artifact
         run: |
           find ./openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
-          find ./openwrt/bin/targets/ -type d -name "rootfs" | xargs rm -rf {}
-          find ./openwrt/bin/targets/ -type d -name "kernel" | xargs rm -rf {}
+          find ./openwrt/bin/targets/ -type f -name "*rootfs*" | xargs rm -rf {}
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
@@ -88,7 +87,7 @@ jobs:
           path: ./openwrt/bin/targets/
 
       - name: Create release
-        if: github.event == 'push'
+        if: github.event_name == 'push'
         id: create_release
         uses: actions/create-release@v1.0.1
         env:
@@ -100,7 +99,7 @@ jobs:
           prerelease: false      
 
       - name: Upload release asset
-        if: github.event == 'push'
+        if: github.event_name == 'push'
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1.0.2
         env:
