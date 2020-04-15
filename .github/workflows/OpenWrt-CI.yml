@@ -108,4 +108,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz
           asset_name: openwrt-x86-64-generic-ext4-combined-efi.img.gz
-          asset_content_type: application/zip
+          asset_content_type: application/gzip
