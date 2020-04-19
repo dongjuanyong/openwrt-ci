@@ -1,5 +1,5 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 73e6cd7f3..43125688e 100644
+index 6f064e742..2bbb305c2 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
 @@ -38,6 +38,13 @@ define Package/dnscrypt-proxy2
@@ -29,7 +29,7 @@ index 73e6cd7f3..43125688e 100644
  	sed -i "s/^listen_addresses = .*/listen_addresses = ['127.0.0.53:53']/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	sed -i "s/^  # blacklist_file = 'blacklist.txt'/blacklist_file = 'blacklist.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
 diff --git a/net/softethervpn/Makefile b/net/softethervpn/Makefile
-index 5710e8e0d..ab0c9b914 100644
+index 5710e8e0d..4a2621145 100644
 --- a/net/softethervpn/Makefile
 +++ b/net/softethervpn/Makefile
 @@ -43,14 +43,24 @@ HOST_MAKE_FLAGS += -f src/makefiles/linux_$(if $(shell uname -m | grep 64),64,32
@@ -68,3 +68,26 @@ index 5710e8e0d..ab0c9b914 100644
  	# Fetch prebuilt hamcore.se2 from staging dir
  	$(INSTALL_DIR) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix
  	$(CP) $(HAMCORE_SE2) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix/hamcore.se2
+diff --git a/sound/shairport-sync/Makefile b/sound/shairport-sync/Makefile
+index d4ef59ed4..7b6be1502 100644
+--- a/sound/shairport-sync/Makefile
++++ b/sound/shairport-sync/Makefile
+@@ -28,7 +28,7 @@ define Package/shairport-sync/default
+   SECTION:=sound
+   CATEGORY:=Sound
+   TITLE:=AirPlay compatible audio player
+-  DEPENDS:=@AUDIO_SUPPORT +libpthread +alsa-lib +libconfig +libdaemon +libpopt
++  DEPENDS:=@AUDIO_SUPPORT +libpthread +alsa-lib +libconfig +libdaemon +libpopt +libalac
+   PROVIDES:=shairport-sync
+   URL:=https://github.com/mikebrady/shairport-sync
+ endef
+@@ -76,7 +76,8 @@ endef
+ 
+ CONFIGURE_ARGS+= \
+ 	--with-alsa \
+-	--with-metadata
++	--with-metadata \
++	--with-apple-alac
+ 
+ ifeq ($(BUILD_VARIANT),openssl)
+   CONFIGURE_ARGS+= --with-ssl=openssl
