@@ -14,7 +14,7 @@ diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans
 index 06e546bb4..978e71b0f 100644
 --- a/modules/luci-base/po/zh_Hans/base.po
 +++ b/modules/luci-base/po/zh_Hans/base.po
-@@ -425,10 +425,22 @@ msgstr "添加对等点"
+@@ -458,10 +458,22 @@ msgstr "添加对等点"
  msgid "Additional Hosts files"
  msgstr "额外的 HOSTS 文件"
  

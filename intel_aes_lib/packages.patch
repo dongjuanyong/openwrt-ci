@@ -69,7 +69,7 @@ index 5710e8e0d..4a2621145 100644
  	$(INSTALL_DIR) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix
  	$(CP) $(HAMCORE_SE2) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix/hamcore.se2
 diff --git a/sound/shairport-sync/Makefile b/sound/shairport-sync/Makefile
-index d4ef59ed4..d93f83bf4 100644
+index 0050d2bee..9a8507b61 100644
 --- a/sound/shairport-sync/Makefile
 +++ b/sound/shairport-sync/Makefile
 @@ -29,7 +29,7 @@ define Package/shairport-sync/default
@@ -132,3 +132,25 @@ index c8c8a699e..000000000
 - AC_PROG_INSTALL
 - 
 - PKG_PROG_PKG_CONFIG([0.9.0])
+diff --git a/utils/coremark/Makefile b/utils/coremark/Makefile
+index 371981e5b..3dd639a4a 100644
+--- a/utils/coremark/Makefile
++++ b/utils/coremark/Makefile
+@@ -45,6 +45,17 @@ endef
+ define Package/coremark/install
+ 	$(INSTALL_DIR) $(1)/bin
+ 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/coremark $(1)/bin/
++	$(INSTALL_DIR) $(1)/etc
++	$(INSTALL_BIN) ./coremark.sh $(1)/etc/
++	$(INSTALL_DIR) $(1)/etc/uci-defaults
++	$(INSTALL_BIN) ./coremark $(1)/etc/uci-defaults/xxx-coremark
++endef
++
++define Package/coremark/postinst
++#!/bin/sh
++[ -n "$${IPKG_INSTROOT}" ] || sed -i '/coremark/d' /etc/crontabs/root
++[ -n "$${IPKG_INSTROOT}" ] || echo "0 4 * * * /etc/coremark.sh" >> /etc/crontabs/root
++[ -n "$${IPKG_INSTROOT}" ] || crontab /etc/crontabs/root
+ endef
+ 
+ $(eval $(call BuildPackage,coremark))
