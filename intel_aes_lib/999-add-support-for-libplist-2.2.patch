@@ -1,0 +1,16 @@
+diff -uNr a/configure.ac b/configure.ac
+--- a/configure.ac	2020-01-30 04:09:06.000000000 +0800
++++ b/configure.ac	2020-06-25 22:34:44.630000000 +0800
+@@ -260,9 +260,11 @@
+ FORK_ARG_WITH_CHECK([FORKED_OPTS], [libsodium support], [libsodium], [LIBSODIUM],
+ 	[libsodium], [sodium_init], [sodium.h])
+ 
++dnl Add support for libplist 2.2
++PKG_CHECK_EXISTS([libplist-2.0], [PLIST=-2.0], [PLIST=])
+ dnl Build with libplist
+ FORK_ARG_WITH_CHECK([FORKED_OPTS], [libplist support], [libplist], [LIBPLIST],
+-	[libplist >= 0.16], [plist_dict_get_item], [plist/plist.h])
++	[libplist$PLIST >= 0.16], [plist_dict_get_item], [plist/plist.h])
+ 
+ dnl Build with libevent_pthreads
+ FORK_ARG_WITH_CHECK([FORKED_OPTS], [libevent_pthreads support],
