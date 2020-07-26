@@ -1,5 +1,5 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 6f064e742..2bbb305c2 100644
+index 95b38db78..7d3656b7d 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
 @@ -38,6 +38,13 @@ define Package/dnscrypt-proxy2
@@ -29,7 +29,7 @@ index 6f064e742..2bbb305c2 100644
  	sed -i "s/^listen_addresses = .*/listen_addresses = ['127.0.0.53:53']/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	sed -i "s/^  # blacklist_file = 'blacklist.txt'/blacklist_file = 'blacklist.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
 diff --git a/net/softethervpn/Makefile b/net/softethervpn/Makefile
-index 5710e8e0d..4a2621145 100644
+index d596b421c..2a7703a6b 100644
 --- a/net/softethervpn/Makefile
 +++ b/net/softethervpn/Makefile
 @@ -43,14 +43,24 @@ HOST_MAKE_FLAGS += -f src/makefiles/linux_$(if $(shell uname -m | grep 64),64,32
@@ -133,10 +133,50 @@ index c8c8a699e..000000000
 - 
 - PKG_PROG_PKG_CONFIG([0.9.0])
 diff --git a/utils/coremark/Makefile b/utils/coremark/Makefile
-index 371981e5b..3dd639a4a 100644
+index 371981e5b..2c51912f1 100644
 --- a/utils/coremark/Makefile
 +++ b/utils/coremark/Makefile
-@@ -45,6 +45,17 @@ endef
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=coremark
+-PKG_SOURCE_DATE:=2020-01-19
+-PKG_SOURCE_VERSION:=0c91314d1a4fdfc157d623ad5cb6ac5aef746db1
+-PKG_RELEASE:=1
++PKG_SOURCE_DATE:=2020-05-28
++PKG_SOURCE_VERSION:=7685fd32bd7919581bfff2881a6dac6320581400
++PKG_RELEASE:=2
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_DATE).tar.gz
+ PKG_SOURCE_URL:=https://codeload.github.com/eembc/coremark/tar.gz/$(PKG_SOURCE_VERSION)?
+-PKG_HASH:=ed046fc8b4402090a9a4aaea14013489c3184617da493a70c7576da69efea8ba
++PKG_HASH:=ff7ee8b4d333893c1ea68616227b369581926d706c7df720b649e0a0631903a9
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_SOURCE_VERSION)
+ 
+ PKG_MAINTAINER:=Lim Guo Wei <limguowei@gmail.com>
+@@ -34,10 +34,19 @@ define Package/coremark/description
+   Embedded Microprocessor Benchmark
+ endef
+ 
++DIR_ARCH:=linux
++
++ifeq ($(ARCH),x86_64)
++	DIR_ARCH:=linux64
++endif
++ifeq ($(ARCH),aarch64)
++	DIR_ARCH:=linux64
++endif
++
+ define Build/Compile
+-	$(SED) 's|EXE = .exe|EXE =|' $(PKG_BUILD_DIR)/linux/core_portme.mak
++	$(SED) 's|EXE = .exe|EXE =|' $(PKG_BUILD_DIR)/$(DIR_ARCH)/core_portme.mak
+ 	mkdir $(PKG_BUILD_DIR)/$(ARCH)
+-	$(CP) -r $(PKG_BUILD_DIR)/linux/* $(PKG_BUILD_DIR)/$(ARCH)
++	$(CP) -r $(PKG_BUILD_DIR)/$(DIR_ARCH)/* $(PKG_BUILD_DIR)/$(ARCH)
+ 	$(MAKE) -C $(PKG_BUILD_DIR) PORT_DIR=$(ARCH) $(MAKE_FLAGS) \
+ 		compile 
+ endef
+@@ -45,6 +54,17 @@ endef
  define Package/coremark/install
  	$(INSTALL_DIR) $(1)/bin
  	$(INSTALL_BIN) $(PKG_BUILD_DIR)/coremark $(1)/bin/
