@@ -1,29 +1,30 @@
-#
-# This is free software, lisence use MIT.
-# 
-# Copyright (C) 2019 P3TERX <https://p3terx.com>
-# Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
-# 
-
+#
+# Copyright (C) 2019 P3TERX
+#
+# Copyright (C) 2020 KFERMercer
+#
 name: OpenWrt-CI
 
 on:
   schedule:
     - cron: 0 20 * * *
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 jobs:
 
   build_openwrt:
+    
+    name: Build OpenWrt firmware
 
-    name: Build OpenWrt and release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -35,7 +36,7 @@ jobs:
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* android*
           sudo -E apt-get update
           sudo -E apt-get -y install build-essential asciidoc gettext libncurses5-dev unzip subversion flex libssl-dev libelf-dev
           sudo -E apt-get -y autoremove --purge
@@ -77,35 +78,30 @@ jobs:
 
       - name: Prepare artifact
         run: |
-          find ./openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
-          find ./openwrt/bin/targets/ -type f -name "*rootfs*" | xargs rm -rf {}
+          mkdir -p ./artifact/firmware
+          mkdir -p ./artifact/buildinfo
+          rm -rf $(find ./openwrt/bin/targets/ -type d -name "packages")
+          rm -rf $(find ./openwrt/bin/targets/ -type f -name "*rootfs*")
+          cp -rf $(find ./openwrt/bin/targets/ -type f) ./artifact/firmware/
+          cp -rf $(find ./openwrt/bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@master
+      - name: Deliver buildinfo
+        uses: actions/upload-artifact@v2
+        with:
+          name: OpenWrt_buildinfo
+          path: ./artifact/buildinfo/
+
+      - name: Deliver firmware
+        uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_firmware
           path: ./openwrt/bin/targets/
 
-      - name: Create release
-        if: github.event_name == 'push'
-        id: create_release
-        uses: actions/create-release@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.RepoKey }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: false
-          prerelease: false      
-
       - name: Upload release asset
-        if: github.event_name == 'push'
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.RepoKey }}
+        if: github.event == 'release'
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz
-          asset_name: openwrt-x86-64-generic-ext4-combined-efi.img.gz
-          asset_content_type: application/gzip
+          repo_token: ${{ secrets.RepoKey }}
+          file: ./artifact/firmware/*
+          tag: ${{ github.ref }}
+          file_glob: true
