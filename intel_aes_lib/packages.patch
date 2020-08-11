@@ -33,7 +33,7 @@ index d596b421c..2a7703a6b 100644
 --- a/net/softethervpn/Makefile
 +++ b/net/softethervpn/Makefile
 @@ -43,14 +43,24 @@ HOST_MAKE_FLAGS += -f src/makefiles/linux_$(if $(shell uname -m | grep 64),64,32
- HOST_LDFLAGS += -Wl,-rpath="$(STAGING_DIR_HOSTPKG)/lib"
+ HOST_LDFLAGS += -Wl,-rpath$(comma)$(STAGING_DIR_HOSTPKG)/lib
  # Prevent calling upstream configure
  define Host/Configure
 +	$(SED) 's/^OPTIONS_COMPILE_RELEASE=/&-DUSE_INTEL_AESNI_LIBRARY /;' \
