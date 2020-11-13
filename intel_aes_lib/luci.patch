@@ -1,8 +1,8 @@
 diff --git a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-index fe9ef75c5..a40e32913 100644
+index b24521e..237f3ef 100644
 --- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 +++ b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-@@ -56,6 +56,7 @@ return L.view.extend({
+@@ -56,6 +56,7 @@ return view.extend({
  		};
  
  		o = s.option(form.Flag, 'drop_invalid', _('Drop invalid packets'));
@@ -11,10 +11,10 @@ index fe9ef75c5..a40e32913 100644
  		var p = [
  			s.option(form.ListValue, 'input', _('Input')),
 diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans/base.po
-index 06e546bb4..978e71b0f 100644
+index 235c4ff..94c8e5d 100644
 --- a/modules/luci-base/po/zh_Hans/base.po
 +++ b/modules/luci-base/po/zh_Hans/base.po
-@@ -486,10 +486,22 @@ msgstr "添加对等点"
+@@ -495,10 +495,22 @@ msgstr "添加到白名单"
  msgid "Additional Hosts files"
  msgstr "额外的 HOSTS 文件"
  
@@ -38,10 +38,10 @@ index 06e546bb4..978e71b0f 100644
  #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:35
  #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:36
 diff --git a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-index 4e217a541..0c08e2f31 100644
+index 7f46740..3995449 100644
 --- a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-@@ -199,6 +199,11 @@ return L.view.extend({
+@@ -199,6 +199,11 @@ return view.extend({
  		s.taboption('files', form.DynamicList, 'addnhosts',
  			_('Additional Hosts files')).optional = true;
  
@@ -53,7 +53,7 @@ index 4e217a541..0c08e2f31 100644
  		o = s.taboption('advanced', form.Flag, 'quietdhcp',
  			_('Suppress logging'),
  			_('Suppress logging of the routine operation of these protocols'));
-@@ -357,6 +362,13 @@ return L.view.extend({
+@@ -364,6 +369,13 @@ return view.extend({
  		o.datatype = 'range(0,10000)';
  		o.placeholder = 150;
  

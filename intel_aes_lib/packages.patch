@@ -1,5 +1,5 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 95b38db78..7d3656b7d 100644
+index 95b38db..7d3656b 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
 @@ -38,6 +38,13 @@ define Package/dnscrypt-proxy2
@@ -29,7 +29,7 @@ index 95b38db78..7d3656b7d 100644
  	sed -i "s/^listen_addresses = .*/listen_addresses = ['127.0.0.53:53']/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	sed -i "s/^  # blacklist_file = 'blacklist.txt'/blacklist_file = 'blacklist.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
 diff --git a/net/softethervpn/Makefile b/net/softethervpn/Makefile
-index d596b421c..2a7703a6b 100644
+index 04450d1..b9c5d29 100644
 --- a/net/softethervpn/Makefile
 +++ b/net/softethervpn/Makefile
 @@ -43,14 +43,24 @@ HOST_MAKE_FLAGS += -f src/makefiles/linux_$(if $(shell uname -m | grep 64),64,32
@@ -68,8 +68,25 @@ index d596b421c..2a7703a6b 100644
  	# Fetch prebuilt hamcore.se2 from staging dir
  	$(INSTALL_DIR) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix
  	$(CP) $(HAMCORE_SE2) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix/hamcore.se2
+diff --git a/net/udpspeeder/Makefile b/net/udpspeeder/Makefile
+index 1ee11d1..dd869d6 100644
+--- a/net/udpspeeder/Makefile
++++ b/net/udpspeeder/Makefile
+@@ -48,12 +48,6 @@ endef
+ define Package/UDPspeeder/install
+ 	$(INSTALL_DIR) $(1)/usr/bin
+ 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/speederv2_cross $(1)/usr/bin/udpspeeder
+-
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/udpspeeder-config $(1)/etc/config/udpspeeder
+-
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/udpspeeder-init $(1)/etc/init.d/udpspeeder
+ endef
+ 
+ $(eval $(call BuildPackage,UDPspeeder))
 diff --git a/sound/shairport-sync/Makefile b/sound/shairport-sync/Makefile
-index 0050d2bee..9a8507b61 100644
+index 0050d2b..9a8507b 100644
 --- a/sound/shairport-sync/Makefile
 +++ b/sound/shairport-sync/Makefile
 @@ -29,7 +29,7 @@ define Package/shairport-sync/default
@@ -93,7 +110,7 @@ index 0050d2bee..9a8507b61 100644
    CONFIGURE_ARGS+= --with-ssl=openssl
 diff --git a/sound/shairport-sync/patches/010-no-cxx.patch b/sound/shairport-sync/patches/010-no-cxx.patch
 deleted file mode 100644
-index c8c8a699e..000000000
+index c8c8a69..0000000
 --- a/sound/shairport-sync/patches/010-no-cxx.patch
 +++ /dev/null
 @@ -1,35 +0,0 @@
@@ -133,10 +150,10 @@ index c8c8a699e..000000000
 - 
 - PKG_PROG_PKG_CONFIG([0.9.0])
 diff --git a/utils/coremark/Makefile b/utils/coremark/Makefile
-index 371981e5b..2c51912f1 100644
+index 4ba7ffd..b4e5eab 100644
 --- a/utils/coremark/Makefile
 +++ b/utils/coremark/Makefile
-@@ -47,6 +47,17 @@ endef
+@@ -64,6 +64,17 @@ endef
  define Package/coremark/install
  	$(INSTALL_DIR) $(1)/bin
  	$(INSTALL_BIN) $(PKG_BUILD_DIR)/coremark $(1)/bin/
