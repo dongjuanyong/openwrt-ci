@@ -14,7 +14,7 @@ diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans
 index 235c4ff..94c8e5d 100644
 --- a/modules/luci-base/po/zh_Hans/base.po
 +++ b/modules/luci-base/po/zh_Hans/base.po
-@@ -495,10 +495,22 @@ msgstr "添加到白名单"
+@@ -494,10 +494,22 @@ msgstr "添加到白名单"
  msgid "Additional Hosts files"
  msgstr "额外的 HOSTS 文件"
  

@@ -141,7 +141,7 @@ index c8c8a69..0000000
 - endif
 ---- a/configure.ac
 -+++ b/configure.ac
--@@ -19,7 +19,6 @@ with_os=`echo ${with_os} | tr '[[:upper:]]' '[[:lower:]]' `
+-@@ -19,7 +19,6 @@ with_os=`echo ${with_os} | tr '[[:upper:
 - 
 - # Checks for programs.
 - AC_PROG_CC
