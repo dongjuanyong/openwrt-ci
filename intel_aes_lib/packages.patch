@@ -9,8 +9,8 @@ index 95b38db..7d3656b 100644
 +define Build/Compile
 +$(call GoPackage/Build/Compile,-ldflags "-s -w")
 +	chmod +x $(GO_PKG_BUILD_BIN_DIR)/dnscrypt-proxy && $(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/dnscrypt-proxy
-+	[ ! -f $(PKG_BUILD_DIR)/public-resolvers.md ] && wget https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v2/public-resolvers.md -O $(PKG_BUILD_DIR)/public-resolvers.md
-+	[ ! -f $(PKG_BUILD_DIR)/public-resolvers.md.minisig ] && wget https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v2/public-resolvers.md.minisig -O $(PKG_BUILD_DIR)/public-resolvers.md.minisig
++	[ ! -f $(PKG_BUILD_DIR)/public-resolvers.md ] && wget https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md -O $(PKG_BUILD_DIR)/public-resolvers.md
++	[ ! -f $(PKG_BUILD_DIR)/public-resolvers.md.minisig ] && wget https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md.minisig -O $(PKG_BUILD_DIR)/public-resolvers.md.minisig
 +endef
 +
  define Package/dnscrypt-proxy2/install
