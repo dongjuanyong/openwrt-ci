@@ -1,5 +1,5 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 95b38db..7d3656b 100644
+index 64032bc41..e31b9d3a3 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
 @@ -38,6 +38,13 @@ define Package/dnscrypt-proxy2
@@ -27,9 +27,9 @@ index 95b38db..7d3656b 100644
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/public-resolvers.md.minisig $(1)/etc/dnscrypt-proxy2/public-resolvers.md.minisig
  
  	sed -i "s/^listen_addresses = .*/listen_addresses = ['127.0.0.53:53']/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
- 	sed -i "s/^  # blocked_names_file = 'blocked_names.txt'/blocked_names_file = 'blocked_names.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
+ 	sed -i "s/^  # blocked_names_file = 'blocked-names.txt'/blocked_names_file = 'blocked-names.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
 diff --git a/net/softethervpn/Makefile b/net/softethervpn/Makefile
-index 04450d1..b9c5d29 100644
+index 04450d198..b9c5d29b6 100644
 --- a/net/softethervpn/Makefile
 +++ b/net/softethervpn/Makefile
 @@ -43,14 +43,24 @@ HOST_MAKE_FLAGS += -f src/makefiles/linux_$(if $(shell uname -m | grep 64),64,32
@@ -69,7 +69,7 @@ index 04450d1..b9c5d29 100644
  	$(INSTALL_DIR) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix
  	$(CP) $(HAMCORE_SE2) $(PKG_BUILD_DIR)/src/bin/BuiltHamcoreFiles/unix/hamcore.se2
 diff --git a/net/udpspeeder/Makefile b/net/udpspeeder/Makefile
-index 1ee11d1..dd869d6 100644
+index 49d24a245..d37b56746 100644
 --- a/net/udpspeeder/Makefile
 +++ b/net/udpspeeder/Makefile
 @@ -48,12 +48,6 @@ endef
@@ -86,7 +86,7 @@ index 1ee11d1..dd869d6 100644
  
  $(eval $(call BuildPackage,UDPspeeder))
 diff --git a/sound/shairport-sync/Makefile b/sound/shairport-sync/Makefile
-index 0050d2b..9a8507b 100644
+index f65a302c5..308ffa184 100644
 --- a/sound/shairport-sync/Makefile
 +++ b/sound/shairport-sync/Makefile
 @@ -29,7 +29,7 @@ define Package/shairport-sync/default
@@ -109,7 +109,7 @@ index 0050d2b..9a8507b 100644
  ifeq ($(BUILD_VARIANT),openssl)
    CONFIGURE_ARGS+= --with-ssl=openssl
 diff --git a/utils/coremark/Makefile b/utils/coremark/Makefile
-index 4ba7ffd..b4e5eab 100644
+index bf7394f10..d5bd2d6de 100644
 --- a/utils/coremark/Makefile
 +++ b/utils/coremark/Makefile
 @@ -82,6 +82,17 @@ endef
