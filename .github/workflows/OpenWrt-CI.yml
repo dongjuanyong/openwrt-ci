@@ -62,6 +62,7 @@ jobs:
           cd openwrt
           make download -j8 || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
+          make check FIXUP=1
           df -h
 
       - name: Compile firmware
