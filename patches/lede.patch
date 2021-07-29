@@ -1,0 +1,158 @@
+diff --git a/package/lean/UnblockNeteaseMusic/Makefile b/package/lean/UnblockNeteaseMusic/Makefile
+index ff8e77606b..1759aa25d0 100644
+--- a/package/lean/UnblockNeteaseMusic/Makefile
++++ b/package/lean/UnblockNeteaseMusic/Makefile
+@@ -15,6 +15,7 @@ PKG_LICENSE:=MIT
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/nondanee/UnblockNeteaseMusic.git
++PKG_MIRROR_HASH:=51422014ed1dd196a12950ac0db2bf88bae6516637440655d0899fac474fbf30
+ PKG_SOURCE_VERSION:=1193e29a2c8f72c738d2988d5cf5afbb2fee7463
+ 
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)
+diff --git a/package/lean/UnblockNeteaseMusicGo/Makefile b/package/lean/UnblockNeteaseMusicGo/Makefile
+index e6ff0bd389..f2eadfbcfb 100644
+--- a/package/lean/UnblockNeteaseMusicGo/Makefile
++++ b/package/lean/UnblockNeteaseMusicGo/Makefile
+@@ -6,6 +6,7 @@ PKG_RELEASE:=1
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/cnsilvan/UnblockNeteaseMusic.git
++PKG_MIRROR_HASH:=e2c229816b9bb04296ca1084db45f94e0b8a80fa978bfc75f4d21836fdd9ec73
+ PKG_SOURCE_VERSION:=935a28125fc7eafaa8273a77352e6262b18efd5e
+ PKG_MAINTAINER:=Silvan <cnsilvan@gmail.com>
+ 
+diff --git a/package/lean/dns2socks/Makefile b/package/lean/dns2socks/Makefile
+index 20f3908b08..5dde6101cf 100644
+--- a/package/lean/dns2socks/Makefile
++++ b/package/lean/dns2socks/Makefile
+@@ -6,6 +6,7 @@ PKG_RELEASE:=1
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/kongfl888/dns2socks.git
++PKG_MIRROR_HASH:=e2ad82f3c524efa0e3bed916efffb1e0800c0b62e614abf190c2b027d032c14c
+ PKG_SOURCE_VERSION:=HEAD
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_LICENSE:=GPL-3.0
+diff --git a/package/lean/microsocks/Makefile b/package/lean/microsocks/Makefile
+index e3c31ebcac..c246bb98c5 100644
+--- a/package/lean/microsocks/Makefile
++++ b/package/lean/microsocks/Makefile
+@@ -10,6 +10,7 @@ PKG_LICENSE_FILES:=LICENSE
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/rofl0r/microsocks.git
++PKG_MIRROR_HASH:=7f5ac48eb3be7c42665cc351cec3dfedff281e6def03f08270517b76a47373ba
+ PKG_SOURCE_VERSION:=ef6f8e3329736418cade06da9f16c308f7bcd433
+ 
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)
+diff --git a/package/lean/openwrt-fullconenat/Makefile b/package/lean/openwrt-fullconenat/Makefile
+index 375530fc46..16ebf30f4c 100644
+--- a/package/lean/openwrt-fullconenat/Makefile
++++ b/package/lean/openwrt-fullconenat/Makefile
+@@ -14,6 +14,7 @@ PKG_RELEASE:=3
+ PKG_SOURCE_DATE:=2019-10-21
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/Chion82/netfilter-full-cone-nat.git
++PKG_MIRROR_HASH:=e7bb77d9916d190b3c02975faf62d1794557d4a4a774cd0cf1f3a6ddb7403e3e
+ PKG_SOURCE_VERSION:=0cf3b48fd7d2fa81d0297d1fff12bbd0580fc435
+ 
+ PKG_LICENSE:=GPL-2.0
+diff --git a/package/lean/pdnsd-alt/Makefile b/package/lean/pdnsd-alt/Makefile
+index 1d69a96a09..1fb15f0a31 100644
+--- a/package/lean/pdnsd-alt/Makefile
++++ b/package/lean/pdnsd-alt/Makefile
+@@ -6,6 +6,7 @@ PKG_RELEASE=$(PKG_SOURCE_VERSION)
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/shadowsocks/pdnsd.git
++PKG_MIRROR_HASH:=c4093a2a21cc44228f4fad536c3303e5d263f400b5ca6ec04fe17bb705f5b92e
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+ PKG_SOURCE_VERSION:=a8e46ccba7b0fa2230d6c42ab6dcd92926f6c21d
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+diff --git a/package/lean/shadowsocksr-libev/Makefile b/package/lean/shadowsocksr-libev/Makefile
+index 8856479912..52bf5b0d49 100644
+--- a/package/lean/shadowsocksr-libev/Makefile
++++ b/package/lean/shadowsocksr-libev/Makefile
+@@ -6,6 +6,7 @@ PKG_RELEASE:=5
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/shadowsocksrr/shadowsocksr-libev
++PKG_MIRROR_HASH:=834ce598f940fb9db2bf4c0d1f8cfa883df27c1c8553dbcb306d6f32ae13c317
+ PKG_SOURCE_VERSION:=d63ff863800a5645aca4309d5dd5962bd1e95543
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
+diff --git a/package/lean/simple-obfs/Makefile b/package/lean/simple-obfs/Makefile
+index a34a351a22..857c68feb2 100644
+--- a/package/lean/simple-obfs/Makefile
++++ b/package/lean/simple-obfs/Makefile
+@@ -13,6 +13,7 @@ PKG_RELEASE:=5
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/shadowsocks/simple-obfs.git
++PKG_MIRROR_HASH:=ea8f2b9825bbb87d5d860524e29bade265141687338db2dbf7ecd32690cf02fc
+ PKG_SOURCE_VERSION:=486bebd9208539058e57e23a12f23103016e09b4
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+diff --git a/package/lean/uugamebooster/Makefile b/package/lean/uugamebooster/Makefile
+index 10a075b0bc..0fab701d27 100644
+--- a/package/lean/uugamebooster/Makefile
++++ b/package/lean/uugamebooster/Makefile
+@@ -31,27 +31,27 @@ endef
+ 
+ ifeq ($(ARCH),x86_64)
+ 	UU_ARCH:=x86_64
+-	PKG_MD5SUM:=07bf06131528276e7d4b8e3992fa2e8d
++	PKG_HASH:=c8b994b194ab0d320b920de9c1fc967de4faed3f16069b55c2c81bc223a5e5dd
+ endif
+ 
+ ifeq ($(ARCH),mipsel)
+ 	UU_ARCH:=mipsel
+-	PKG_MD5SUM:=3f11af92eb7abf2af2cce8102fea7499
++	PKG_HASH:=3f11af92eb7abf2af2cce8102fea7499
+ endif
+ 
+ ifeq ($(ARCH),mips)
+ 	UU_ARCH:=mipsel
+-	PKG_MD5SUM:=3f11af92eb7abf2af2cce8102fea7499
++	PKG_HASH:=3f11af92eb7abf2af2cce8102fea7499
+ endif
+ 
+ ifeq ($(ARCH),arm)
+ 	UU_ARCH:=arm
+-	PKG_MD5SUM:=5fce2b60df66ea8a8db4ddd55da3c6b4
++	PKG_HASH:=5fce2b60df66ea8a8db4ddd55da3c6b4
+ endif
+ 
+ ifeq ($(ARCH),aarch64)
+ 	UU_ARCH:=aarch64
+-	PKG_MD5SUM:=bc0e513cfce113c69b068e198e936100
++	PKG_HASH:=bc0e513cfce113c69b068e198e936100
+ endif
+ 
+ PKG_SOURCE_URL:=http://uu.gdl.netease.com/openwrt-$(UU_ARCH)/$(PKG_VERSION)/uu.tar.gz?
+diff --git a/package/lean/vlmcsd/Makefile b/package/lean/vlmcsd/Makefile
+index d63579e143..eadf8a82d9 100644
+--- a/package/lean/vlmcsd/Makefile
++++ b/package/lean/vlmcsd/Makefile
+@@ -10,6 +10,7 @@ PKG_LICENSE_FILES:=LICENSE
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/Wind4/vlmcsd.git
++PKG_MIRROR_HASH:=9510cf4e48e809b09fea60f29e41d3a0fb0f58257644dc60929ad503e8a156af
+ PKG_SOURCE_VERSION:=e599080486478e219cd065e141d6de050a450c27
+ 
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)
+diff --git a/package/lean/vsftpd-alt/Makefile b/package/lean/vsftpd-alt/Makefile
+index c8cbecdd9e..49d711be27 100644
+--- a/package/lean/vsftpd-alt/Makefile
++++ b/package/lean/vsftpd-alt/Makefile
+@@ -13,7 +13,7 @@ PKG_RELEASE:=7
+ 
+ PKG_SOURCE:=vsftpd-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=https://security.appspot.com/downloads/
+-PKG_MD5SUM:=da119d084bd3f98664636ea05b5bb398
++PKG_HASH:=9d4d2bf6e6e2884852ba4e69e157a2cecd68c5a7635d66a3a8cf8d898c955ef7
+ PKG_LICENSE:=GPLv2
+ 
+ BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)

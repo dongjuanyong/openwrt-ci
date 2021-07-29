@@ -14,7 +14,7 @@ diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans
 index f0373e2a3..87c4f7726 100644
 --- a/modules/luci-base/po/zh_Hans/base.po
 +++ b/modules/luci-base/po/zh_Hans/base.po
-@@ -534,10 +534,19 @@ msgstr "添加到白名单"
+@@ -527,10 +527,19 @@ msgstr "添加到白名单"
  msgid "Additional Hosts files"
  msgstr "额外的 HOSTS 文件"
  
@@ -24,7 +24,7 @@ index f0373e2a3..87c4f7726 100644
 +msgid "Filter IPv6(AAAA) DNS Query Name Resolve"
 +msgstr "过滤掉 IPv6(AAAA) ，只返回 IPv4 DNS 域名记录"
 +
- #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:346
+ #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:344
  msgid "Additional servers file"
  msgstr "额外的 SERVERS 文件"
  
