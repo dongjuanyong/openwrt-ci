@@ -1,8 +1,8 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 64032bc41..e31b9d3a3 100644
+index 53744c384..7e710a62a 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
-@@ -38,6 +38,13 @@ define Package/dnscrypt-proxy2
+@@ -42,6 +42,13 @@ define Package/dnscrypt-proxy2
    CONFLICTS:=dnscrypt-proxy
  endef
  
@@ -16,7 +16,7 @@ index 64032bc41..e31b9d3a3 100644
  define Package/dnscrypt-proxy2/install
  	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
  
-@@ -47,9 +54,8 @@ define Package/dnscrypt-proxy2/install
+@@ -51,9 +58,8 @@ define Package/dnscrypt-proxy2/install
  	$(INSTALL_DIR) $(1)/etc/dnscrypt-proxy2
  	$(INSTALL_CONF) $(PKG_BUILD_DIR)/dnscrypt-proxy/example-dnscrypt-proxy.toml $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	$(INSTALL_CONF) ./files/blocked-names.txt $(1)/etc/dnscrypt-proxy2/blocked-names.txt
@@ -28,6 +28,42 @@ index 64032bc41..e31b9d3a3 100644
  
  	sed -i "s/^listen_addresses = .*/listen_addresses = ['127.0.0.53:53']/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	sed -i "s/^  # blocked_names_file = 'blocked-names.txt'/blocked_names_file = 'blocked-names.txt'/" $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
+diff --git a/net/softethervpn5/Makefile b/net/softethervpn5/Makefile
+index 566d7beb1..828fc2ec7 100644
+--- a/net/softethervpn5/Makefile
++++ b/net/softethervpn5/Makefile
+@@ -10,12 +10,14 @@ PKG_MAINTAINER:=Andy Walsh <andy.walsh44+github@gmail.com>
+ PKG_LICENSE:=GPL-2.0
+ PKG_LICENSE_FILES:=COPYING
+ 
+-PKG_SOURCE_URL:=https://github.com/SoftEtherVPN/SoftEtherVPN/releases/download/$(PKG_VERSION)/
+-PKG_SOURCE:=SoftEtherVPN-$(PKG_VERSION).tar.xz
+-PKG_HASH:=b5649a8ea3cc6477325e09e2248ef708d434ee3b2251eb8764bcfc15fb1de456
+-
+-HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/SoftEtherVPN-$(PKG_VERSION)
+-PKG_BUILD_DIR:=$(BUILD_DIR)/SoftEtherVPN-$(PKG_VERSION)
++PKG_SOURCE_PROTO:=git
++PKG_SOURCE_URL:=https://github.com/SoftEtherVPN/SoftEtherVPN.git
++PKG_SOURCE_DATE:=2021-07-24
++PKG_SOURCE_VERSION:=101d79d7c3c5d978a82545b1c2b94bbd480285a6
++PKG_MIRROR_HASH:=e70186da7c01e6152ac3c6be88ab107d5dce48b7fef44f0a41ecbd96d0de9e7e
++
++HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/softethervpn5-$(PKG_VERSION)
++PKG_BUILD_DIR:=$(BUILD_DIR)/softethervpn5-$(PKG_VERSION)
+ 
+ HOST_BUILD_DEPENDS:=ncurses/host readline/host
+ PKG_BUILD_DEPENDS:=softethervpn5/host
+diff --git a/net/softethervpn5/patches/001-iconv-cmake-fix.patch b/net/softethervpn5/patches/001-iconv-cmake-fix.patch
+index 1f15a4445..bab0ff202 100644
+--- a/net/softethervpn5/patches/001-iconv-cmake-fix.patch
++++ b/net/softethervpn5/patches/001-iconv-cmake-fix.patch
+@@ -7,5 +7,5 @@
+ -  find_library(LIB_ICONV iconv)
+ +  find_library(LIB_ICONV iconv HINTS "${ICONV_LIB_PATH}")
+  
++   find_library(LIB_M m)
+    find_library(LIB_RT rt)
+- 
 diff --git a/net/udpspeeder/Makefile b/net/udpspeeder/Makefile
 index 49d24a245..d37b56746 100644
 --- a/net/udpspeeder/Makefile
@@ -46,7 +82,7 @@ index 49d24a245..d37b56746 100644
  
  $(eval $(call BuildPackage,UDPspeeder))
 diff --git a/utils/coremark/Makefile b/utils/coremark/Makefile
-index bf7394f10..d5bd2d6de 100644
+index 2358f1568..169f94261 100644
 --- a/utils/coremark/Makefile
 +++ b/utils/coremark/Makefile
 @@ -80,6 +80,17 @@ endef
