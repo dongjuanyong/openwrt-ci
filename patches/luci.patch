@@ -11,11 +11,11 @@ index f9d84bfb6..62581a3a3 100644
  		var p = [
  			s.option(form.ListValue, 'input', _('Input')),
 diff --git a/modules/luci-base/po/zh_Hans/base.po b/modules/luci-base/po/zh_Hans/base.po
-index c4c88291a..53ff6eb8f 100644
+index b05c31be0..edcd1823d 100644
 --- a/modules/luci-base/po/zh_Hans/base.po
 +++ b/modules/luci-base/po/zh_Hans/base.po
-@@ -535,10 +535,19 @@ msgstr "添加到白名单"
- msgid "Additional Hosts files"
+@@ -479,10 +479,19 @@ msgstr "添加到白名单"
+ msgid "Additional hosts files"
  msgstr "额外的 HOSTS 文件"
  
 +msgid "Disable IPv6 DNS forwards"
@@ -24,7 +24,7 @@ index c4c88291a..53ff6eb8f 100644
 +msgid "Filter IPv6(AAAA) DNS Query Name Resolve"
 +msgstr "过滤掉 IPv6(AAAA) ，只返回 IPv4 DNS 域名记录"
 +
- #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:345
+ #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:414
  msgid "Additional servers file"
  msgstr "额外的 SERVERS 文件"
  
@@ -35,12 +35,12 @@ index c4c88291a..53ff6eb8f 100644
  #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:35
  #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:36
 diff --git a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-index dd19c5128..7198d7384 100644
+index d7f691078..5a59f9da4 100644
 --- a/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 +++ b/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-@@ -289,6 +289,11 @@ return view.extend({
- 		s.taboption('files', form.DynamicList, 'addnhosts',
- 			_('Additional Hosts files')).optional = true;
+@@ -366,6 +366,11 @@ return view.extend({
+ 		o.optional = true;
+ 		o.placeholder = '/etc/dnsmasq.hosts';
  
 +		o = s.taboption('advanced', form.Flag, 'filter_aaaa',
 +			_('Disable IPv6 DNS forwards'),
@@ -49,10 +49,10 @@ index dd19c5128..7198d7384 100644
 +
  		o = s.taboption('advanced', form.Flag, 'quietdhcp',
  			_('Suppress logging'),
- 			_('Suppress logging of the routine operation of these protocols'));
-@@ -454,6 +459,13 @@ return view.extend({
- 		o.datatype = 'range(0,10000)';
- 		o.placeholder = 150;
+ 			_('Suppress logging of the routine operation for the DHCP protocol.'));
+@@ -477,6 +482,13 @@ return view.extend({
+ 			_('Enable TFTP server'));
+ 		o.optional = true;
  
 +		o = s.taboption('advanced', form.Value, 'mini_ttl',
 +			_('Minimum TTL to send to clients'),
@@ -61,6 +61,6 @@ index dd19c5128..7198d7384 100644
 +		o.datatype = 'range(0,86400)';
 +		o.placeholder = 0;
 +
- 		s.taboption('tftp', form.Flag, 'enable_tftp',
- 			_('Enable TFTP server')).optional = true;
- 
+ 		o = s.taboption('tftp', form.Value, 'tftp_root',
+ 			_('TFTP server root'),
+ 			_('Root directory for files served via TFTP.'));

@@ -1,8 +1,8 @@
 diff --git a/net/dnscrypt-proxy2/Makefile b/net/dnscrypt-proxy2/Makefile
-index 53744c384..7e710a62a 100644
+index 2b2366b71..e28bc7d03 100644
 --- a/net/dnscrypt-proxy2/Makefile
 +++ b/net/dnscrypt-proxy2/Makefile
-@@ -42,6 +42,13 @@ define Package/dnscrypt-proxy2
+@@ -41,6 +41,13 @@ define Package/dnscrypt-proxy2
    CONFLICTS:=dnscrypt-proxy
  endef
  
@@ -16,7 +16,7 @@ index 53744c384..7e710a62a 100644
  define Package/dnscrypt-proxy2/install
  	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
  
-@@ -51,9 +58,8 @@ define Package/dnscrypt-proxy2/install
+@@ -50,9 +57,8 @@ define Package/dnscrypt-proxy2/install
  	$(INSTALL_DIR) $(1)/etc/dnscrypt-proxy2
  	$(INSTALL_CONF) $(PKG_BUILD_DIR)/dnscrypt-proxy/example-dnscrypt-proxy.toml $(1)/etc/dnscrypt-proxy2/dnscrypt-proxy.toml
  	$(INSTALL_CONF) ./files/blocked-names.txt $(1)/etc/dnscrypt-proxy2/blocked-names.txt
